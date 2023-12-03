@@ -39,6 +39,7 @@ pip install Flask
 pip install Flask-RESTful
 pip install Flask-SQLAlchemy
 pip install psycopg
+pip install Flask-Migrate
 ```
 ## Create user and database in PostgreSQL
 ```
@@ -95,6 +96,12 @@ ruff check .
 ### Format
 ```
 ruff format .
+```
+## Migrations
+```
+flask --app flaskr db init
+flask --app flaskr db migrate
+flask --app flaskr db upgrade
 ```
 
 ## Run

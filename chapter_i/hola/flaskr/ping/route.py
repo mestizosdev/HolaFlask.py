@@ -1,5 +1,5 @@
-from .controller.ping import Ping
+from .controller.ping_controller import Ping
 
 
 def define_routers(api):
-	api.add_resource(Ping, '/hola/v1/ping')
+    api.add_resource(Ping, '/hola/v1/ping')
