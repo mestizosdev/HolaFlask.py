@@ -71,7 +71,11 @@ sudo systemctl restart postgresql
 ```
 * Test new hola user
 ```commandline
-psql -d postgres -U odoo15 -W
+psql -d postgres -U hola -W
+```
+* Create database
+```
+create database hola;
 ```
 ### For access to database from remote host 
 * Edit **postgresql.conf** file in the same directory of **pg_hba.conf** file

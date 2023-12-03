@@ -1,5 +1,6 @@
 from flask_restful import Resource
 import platform
+from ..service.version import get_version
 
 
 class Version(Resource):
@@ -10,7 +11,7 @@ class Version(Resource):
 				'author': 'Jorge Luis',
 				'version': '1.0.0',
 				'versionOS': f'{platform.system()} {platform.release()}',
-				'versionDatabase': 'version.version_database',
+				'versionDatabase': get_version(),
 				'versionPython': platform.python_version(),
 			}
 		}
