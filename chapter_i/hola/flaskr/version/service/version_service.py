@@ -1,10 +1,9 @@
 from sqlalchemy import text
+from flaskr.config.database import db
 
 
 def get_version():
     try:
-        from flaskr import db
-
         sql = text('select version() as version_database')
         with db.engine.connect() as connection:
             result = connection.execute(sql)

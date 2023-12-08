@@ -1,4 +1,4 @@
-from flaskr import db
+from flaskr.config.database import db
 
 
 class User(db.Model):
