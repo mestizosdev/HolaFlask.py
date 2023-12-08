@@ -12,4 +12,4 @@ def get_version():
                 return row.version_database
     except Exception as e:
         current_app.logger.error(f'Error to get version database {e}')
-        return ''
+        return 'Not available'
