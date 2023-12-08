@@ -2,7 +2,7 @@ from flask import Flask
 from flask_restful import Api
 from flask_migrate import Migrate
 from .config.database import db
-from .logger import define_logger
+from flaskr.config.logger import define_logger
 from .routes import load_routers
 
 app = Flask(__name__)
