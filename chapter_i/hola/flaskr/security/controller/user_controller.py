@@ -31,5 +31,8 @@ class UserById(Resource):
 
 class User(Resource):
     def post(self):
-        data = request.get_json()
-        return UserService.save(data)
+        try:
+            data = request.get_json()
+            return UserService.save(data)
+        except ValueError as e:
+            return {'message': str(e)}, 500
