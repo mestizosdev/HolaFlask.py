@@ -1,7 +1,7 @@
 from flask import jsonify
 from ..model.user import User
 from flaskr.config.database import db
-from flask import current_app
+from flask import current_app   
 
 
 class UserService:

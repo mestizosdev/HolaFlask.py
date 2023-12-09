@@ -1,4 +1,4 @@
-from flask_restful import Resource
+    from flask_restful import Resource
 from flask import request
 from ..service.user_service import UserService
 

@@ -1,5 +1,8 @@
 # Chapter I
 
+## Resources
+- https://httpie.io
+
 ## Content
 - Flask
 - Add endpoint ping

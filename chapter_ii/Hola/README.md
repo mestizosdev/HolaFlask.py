@@ -1,5 +1,8 @@
 # Chapter II
 
+## Resources
+- https://httpie.io/
+
 ## Content
 - Add endpoint version
 
