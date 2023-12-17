@@ -9,12 +9,12 @@ class User(db.Model):
     username = db.Column(db.String, unique=True, nullable=False)
     email = db.Column(db.String, unique=True, nullable=False)
     password = db.Column(db.String, nullable=False)
-    status = db.Column(db.Boolean, nullable=False, default=True)
+    status = db.Column(db.Boolean, nullable=False, default=False)
+    create_at = db.Column(
+        db.DateTime, nullable=False, server_default=db.func.now()
+    )
 
-    def __init__(
-        self, username: str, email: str, password: str, status: bool = True
-    ):
+    def __init__(self, username: str, email: str, password: str):
         self.username = username
         self.email = email
         self.password = password
-        self.status = status
