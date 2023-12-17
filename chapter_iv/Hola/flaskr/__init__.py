@@ -6,6 +6,7 @@ from flask_migrate import Migrate
 from flaskr.config.database import db
 from flaskr.config.logger import define_logger
 from flaskr.config.routes import load_routes
+from flaskr.seeder import Seeder
 
 
 app = Flask(__name__)
@@ -20,3 +21,13 @@ migrate = Migrate(app, db)
 
 load_routes(api)
 define_logger()
+
+
+@app.cli.command('seed')
+def seed():
+    Seeder.seed()
+
+
+@app.cli.command('unseed')
+def undo_seed():
+    Seeder.unseed()

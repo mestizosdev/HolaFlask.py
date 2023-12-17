@@ -21,9 +21,17 @@ flask --app flaskr db upgrade
 ```
 flask --app flaskr db downgrade
 ```
-### Remove migration folder for new migration (optional)
+### Remove migration folder for new migration
 ```
 rm -rf migrations
+```
+## Seed database
+```
+flask --app flaskr seed
+```
+### Undo seed
+```
+flask --app flaskr unseed
 ```
 
 ## Run

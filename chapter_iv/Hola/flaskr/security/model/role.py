@@ -17,3 +17,6 @@ class Role(db.Model):
     create_at: Mapped[datetime] = mapped_column(
         db.DateTime, nullable=False, server_default=db.func.now()
     )
+
+    def __init__(self, name: str):
+        self.name = name
