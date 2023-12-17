@@ -1,10 +1,10 @@
 # Chapter II
 
-## Resources
-- https://httpie.io/
-
 ## Content
 - Add endpoint version
+
+## Resources
+- https://httpie.io/
 
 ## Install dependencies
 ```
@@ -55,6 +55,10 @@ create database hola;
 * In **pg_hba.conf** add the next line:
 ```
 host    all             hola          remote.host.ip/24.mask.number         trust
+```
+## Install dependencies
+```
+pip install -r requirements.txt
 ```
 ## Run
 ```

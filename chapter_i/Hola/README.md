@@ -1,11 +1,11 @@
 # Chapter I
 
-## Resources
-- https://httpie.io
-
 ## Content
 - Flask
 - Add endpoint ping
+
+## Resources
+- https://httpie.io
 
 ## Resources
 - https://flask.palletsprojects.com
@@ -24,7 +24,7 @@ virtualenv venv
 ```
 or
 ```
-virtualenv -p python3.11 venv
+virtualenv -p python3.12 venv
 ```
 ## Activate python virtual environment
 ```
@@ -54,7 +54,10 @@ ruff check .
 ```
 ruff format .
 ```
-
+## Install dependencies
+```
+pip install -r requirements.txt
+```
 ## Run
 ```
 flask --app flaskr run --debug
