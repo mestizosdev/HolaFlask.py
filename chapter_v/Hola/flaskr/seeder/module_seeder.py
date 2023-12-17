@@ -15,12 +15,16 @@ class ModuleSeeder:
             parent=main,
         )
         db.session.add(security)
-        security_manage = Module(name='Manage', observation='Menu', parent=security)
-        db.session.add(
-            security_manage
+        security_manage = Module(
+            name='Manage', observation='Menu', parent=security
         )
-        db.session.add(Module(name='User', observation='Option', parent=security_manage))
-        db.session.add(Module(name='Role', observation='Option', parent=security_manage))
+        db.session.add(security_manage)
+        db.session.add(
+            Module(name='User', observation='Option', parent=security_manage)
+        )
+        db.session.add(
+            Module(name='Role', observation='Option', parent=security_manage)
+        )
         db.session.add(
             Module(name='Transaction', observation='Menu', parent=security)
         )
