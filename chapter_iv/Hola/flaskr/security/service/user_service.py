@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import current_app as app
 from flaskr.config.database import db
+from flaskr.utils.password import encrypt
 from ..model.user import User
 
 
@@ -43,7 +44,7 @@ class UserService:
             user = User(
                 username=data['username'],
                 email=data['email'],
-                password=data['password'],
+                password=encrypt(data['password']),
             )
             db.session.add(user)
             db.session.commit()
@@ -68,7 +69,7 @@ class UserService:
             if user:
                 user.username = data['username']
                 user.email = data['email']
-                user.password = data['password']
+                user.password = encrypt(data['password'])
                 user.status = data['status']
 
                 db.session.commit()
