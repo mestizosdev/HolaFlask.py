@@ -2,6 +2,7 @@
 
 ## Content
 - Login
+- Pydantic
 
 ## Resources
 - https://insomnia.rest
