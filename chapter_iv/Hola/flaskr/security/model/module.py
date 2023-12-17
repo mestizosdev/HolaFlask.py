@@ -6,7 +6,7 @@ from sqlalchemy import ForeignKey
 class Module(db.Model):
     __tablename__ = 'modules'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, db.Identity(start=1), primary_key=True)
     name = db.Column(db.String, nullable=False)
     observation = db.Column(db.String, nullable=False)
     status = db.Column(db.Boolean, nullable=False, default=True)

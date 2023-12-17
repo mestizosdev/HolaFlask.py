@@ -10,7 +10,13 @@ class UserService:
         users = User.query.all()
 
         users_dict = [
-            {'id': user.id, 'username': user.username} for user in users
+            {
+                'id': user.id,
+                'username': user.username,
+                'email': user.email,
+                'status': user.status,
+            }
+            for user in users
         ]
 
         return users_dict
@@ -20,7 +26,12 @@ class UserService:
         user = User.query.filter_by(id=id).first()
 
         if user:
-            user_dict = {'id': user.id, 'username': user.username}
+            user_dict = {
+                'id': user.id,
+                'username': user.username,
+                'email': user.email,
+                'status': user.status,
+            }
 
             return user_dict
 
@@ -29,11 +40,20 @@ class UserService:
     @staticmethod
     def save(data):
         try:
-            user = User(username=data['username'], password=data['password'])
+            user = User(
+                username=data['username'],
+                email=data['email'],
+                password=data['password'],
+            )
             db.session.add(user)
             db.session.commit()
 
-            user_dict = {'id': user.id, 'username': user.username}
+            user_dict = {
+                'id': user.id,
+                'username': user.username,
+                'email': user.email,
+                'status': user.status,
+            }
 
             return user_dict
         except Exception as e:
@@ -47,11 +67,18 @@ class UserService:
 
             if user:
                 user.username = data['username']
+                user.email = data['email']
                 user.password = data['password']
+                user.status = data['status']
 
                 db.session.commit()
 
-                user_dict = {'id': user.id, 'username': user.username}
+                user_dict = {
+                    'id': user.id,
+                    'username': user.username,
+                    'email': user.email,
+                    'status': user.status,
+                }
 
                 return user_dict
 

@@ -5,7 +5,7 @@ from flaskr.config.database import db
 class Access(db.Model):
     __tablename__ = 'access'
 
-    id = db.Column(db.Integer, primary_key=True)
+    id = db.Column(db.Integer, db.Identity(start=1), primary_key=True)
     read = db.Column(db.Boolean, nullable=False, default=False)
     write = db.Column(db.Boolean, nullable=False, default=False)
     update = db.Column(db.Boolean, nullable=False, default=False)
