@@ -21,5 +21,5 @@ class UserRole(db.Model):
     UniqueConstraint(user_id, role_name)
 
     def __init__(self, user: User, role: Role):
-        self.user_id = user.id
-        self.role_name = role.name
+        self.user = user
+        self.role = role

@@ -24,12 +24,12 @@ class UserSeeder:
         db.session.add(admini)
         db.session.add(manager)
         db.session.add(User('yo', 'yo@localhost', encrypt('y')))
-        db.session.commit()
 
         role_administrator = Role.query.filter_by(name='Administrator').first()
         role_manager = Role.query.filter_by(name='Manager').first()
         db.session.add(UserRole(admini, role_administrator))
         db.session.add(UserRole(manager, role_manager))
+
         db.session.commit()
 
     @staticmethod

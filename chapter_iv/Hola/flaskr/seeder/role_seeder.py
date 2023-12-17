@@ -7,6 +7,8 @@ class RoleSeeder:
     def create():
         db.session.add(Role(name='Administrator'))
         db.session.add(Role(name='Manager'))
+        db.session.add(Role(name='Security'))
+        db.session.add(Role(name='Library'))
         db.session.commit()
 
     @staticmethod

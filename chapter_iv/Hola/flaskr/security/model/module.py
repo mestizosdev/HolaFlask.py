@@ -19,7 +19,8 @@ class Module(db.Model):
     parent = db.relationship('Module', backref='Module', remote_side=id)
     role = db.relationship('Role', backref='Module')
 
-    def __init__(self, name: str, observation: str, parent=None):
+    def __init__(self, name: str, observation: str, role=None, parent=None):
         self.name = name
         self.observation = observation
+        self.role = role
         self.parent = parent
