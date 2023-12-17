@@ -14,7 +14,7 @@ class Module(db.Model):
         db.DateTime, nullable=False, server_default=db.func.now()
     )
     module_id = db.Column(db.Integer, ForeignKey('modules.id'))
-    role_id = db.Column(db.Integer, db.ForeignKey('roles.id'))
+    role_name = db.Column(db.String, db.ForeignKey('roles.name'))
 
     parent = db.relationship('Module', backref='Module', remote_side=id)
     role = db.relationship('Role', backref='Module')
