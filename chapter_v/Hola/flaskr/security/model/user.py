@@ -13,6 +13,7 @@ class User(db.Model):
     create_at = db.Column(
         db.DateTime, nullable=False, server_default=db.func.now()
     )
+    update_at = db.Column(db.DateTime)
 
     def __init__(self, username: str, email: str, password: str):
         self.username = username

@@ -69,7 +69,6 @@ class UserService:
             if user:
                 user.username = data['username']
                 user.email = data['email']
-                user.password = encrypt(data['password'])
                 user.status = data['status']
 
                 db.session.commit()

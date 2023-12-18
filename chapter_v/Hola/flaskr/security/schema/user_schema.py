@@ -1,5 +1,6 @@
 from pydantic import BaseModel, EmailStr, field_validator
 from pydantic_core import PydanticCustomError
+from typing import Optional
 from flaskr.utils.password import validate
 
 
@@ -18,3 +19,8 @@ class UserBody(BaseModel):
                 dict(reason='Not valid password'),
             )
         return value
+
+
+class UserBodyUpdate(UserBody):
+    password: Optional[str] = None
+    status: bool
