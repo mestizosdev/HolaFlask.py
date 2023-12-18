@@ -2,7 +2,7 @@
 
 ## Content
 - Login
-- Pydantic
+- Pydantic for validate data
 
 ## Resources
 - https://insomnia.rest
