@@ -58,8 +58,8 @@ class UserService:
 
             return user_dict
         except Exception as e:
-            app.logger.error(f'Error to save user: {e}.')
-            raise ValueError('Error to save user.')
+            app.logger.error(f'Error to save user: {e}')
+            raise ValueError('Error to save user')
 
     @staticmethod
     def update(id, data):
@@ -85,8 +85,8 @@ class UserService:
 
             return None
         except Exception as e:
-            app.logger.error(f'Error to update user: {e}.')
-            raise ValueError('Error to update user.')
+            app.logger.error(f'Error to update user: {e}')
+            raise ValueError('Error to update user')
 
     @staticmethod
     def delete(id):
@@ -101,5 +101,37 @@ class UserService:
 
             return False
         except Exception as e:
-            app.logger.error(f'Error to delete user: {e}.')
-            raise ValueError('Error to delete user.')
+            app.logger.error(f'Error to delete user: {e}')
+            raise ValueError('Error to delete user')
+
+    @staticmethod
+    def find_by_username(username):
+        user = User.query.filter_by(username=username).first()
+
+        if user:
+            user_dict = {
+                'id': user.id,
+                'username': user.username,
+                'email': user.email,
+                'status': user.status,
+            }
+
+            return user_dict
+
+        return None
+
+    @staticmethod
+    def find_by_email(email):
+        user = User.query.filter_by(email=email).first()
+
+        if user:
+            user_dict = {
+                'id': user.id,
+                'username': user.username,
+                'email': user.email,
+                'status': user.status,
+            }
+
+            return user_dict
+
+        return None

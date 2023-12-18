@@ -25,5 +25,5 @@ class LoginService:
 
             return user_dict
         except Exception as e:
-            app.logger.error(e)
-            raise ValueError('User already exists.')
+            app.logger.error(f'Error to register user: {e}')
+            raise ValueError('Error to register user')
