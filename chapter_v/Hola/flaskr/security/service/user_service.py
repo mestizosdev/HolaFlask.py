@@ -1,5 +1,6 @@
 # -*- coding: utf-8 -*-
 from flask import current_app as app
+from typing import Tuple
 from flaskr.config.database import db
 from flaskr.utils.password import encrypt
 from ..model.user import User
@@ -62,11 +63,22 @@ class UserService:
             raise ValueError('Error to save user')
 
     @staticmethod
-    def update(id, data):
+    def update(id, data) -> Tuple[bool, dict]:
         try:
             user = User.query.filter_by(id=id).first()
 
             if user:
+                if data['username'] != user.username:
+                    if (
+                        User.query.filter_by(username=data['username']).count()
+                        > 0
+                    ):
+                        return False, {'message': 'Username is already registry'}
+
+                if data['email'] != user.email:
+                    if User.query.filter_by(email=data['email']).count() > 0:
+                        return False, {'message': 'Email is already registry'}
+
                 user.username = data['username']
                 user.email = data['email']
                 user.status = data['status']
@@ -79,10 +91,9 @@ class UserService:
                     'email': user.email,
                     'status': user.status,
                 }
+                return True, user_dict
 
-                return user_dict
-
-            return None
+            return False, {'message': 'User not found'}
         except Exception as e:
             app.logger.error(f'Error to update user: {e}')
             raise ValueError('Error to update user')

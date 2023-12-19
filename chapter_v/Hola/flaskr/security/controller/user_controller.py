@@ -18,19 +18,19 @@ class UserById(Resource):
         if user:
             return jsonify(user)
 
-        return {'message': 'User not found.'}, 404
+        return {'message': 'User not found'}, 404
 
     @validate(body=UserBodyUpdate)
     def put(self, id):
         """Not update password"""
         try:
             data = request.get_json()
-            user = UserService.update(id, data)
+            status, result_dict = UserService.update(id, data)
 
-            if user:
-                return jsonify(user)
+            if status:
+                return jsonify(result_dict)
 
-            return {'message': 'User not found.'}, 404
+            return result_dict, 404
         except ValueError as e:
             return {'message': str(e)}, 500
 
@@ -39,9 +39,9 @@ class UserById(Resource):
             status = UserService.delete(id)
 
             if status:
-                return {'message': 'User deleted.'}
+                return {'message': 'User deleted'}
 
-            return {'message': 'User not found.'}, 404
+            return {'message': 'User not found'}, 404
         except ValueError as e:
             return {'message': str(e)}, 500
 
