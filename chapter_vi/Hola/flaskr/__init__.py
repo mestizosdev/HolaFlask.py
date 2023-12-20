@@ -3,6 +3,7 @@ from flask import Flask
 from flask_restful import Api
 from flask_cors import CORS
 from flask_migrate import Migrate
+from flask_mail import Mail, Message
 from flaskr.config.database import db
 from flaskr.config.logger import define_logger
 from flaskr.config.routes import load_routes
@@ -31,3 +32,20 @@ def seed():
 @app.cli.command('unseed')
 def undo_seed():
     Seeder.unseed()
+
+
+app.config['MAIL_SERVER'] = '0.0.0.0'
+app.config['MAIL_PORT'] = 1025
+app.config['MAIL_USERNAME'] = ''
+app.config['MAIL_PASSWORD'] = ''
+app.config['MAIL_USE_TLS'] = False
+app.config['MAIL_USE_SSL'] = False
+mail = Mail(app)
+
+
+@app.route("/")
+def index():
+    msg = Message(subject='Hello from flask application!', sender='jorge@hola.dev', recipients=['sol@friend.io'])
+    msg.body = "Hello Sol, how are you?"
+    mail.send(msg)
+    return "Message sent!"

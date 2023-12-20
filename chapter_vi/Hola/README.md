@@ -18,7 +18,7 @@ docker run -d --name mailhog -p 8025:8025 -p 1025:1025 mailhog
 ```
 docker logs mailhog
 ```
-### Got to http://localhost:8025/ to see the mailhog interface
+### Go to http://localhost:8025/ to see the mailhog interface
 
 ## Install dependencies
 ```
