@@ -1,0 +1,10 @@
+Flask==3.0.0
+Flask-Cors==4.0.0
+Flask-Migrate==4.0.5
+Flask-RESTful==0.3.10
+Flask-SQLAlchemy==3.1.1
+psycopg==3.1.14
+ruff==0.1.8
+bcrypt==4.1.2
+Flask-Pydantic==0.11.0
+email-validator==2.1.0.post1
