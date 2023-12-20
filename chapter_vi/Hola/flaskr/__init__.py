@@ -14,6 +14,7 @@ app = Flask(__name__)
 CORS(app)
 api = Api(app)
 app.config.from_pyfile('config/config.cfg')
+mail = Mail(app)
 db.init_app(app)
 
 from flaskr.config.models import *  # noqa
@@ -34,13 +35,6 @@ def undo_seed():
     Seeder.unseed()
 
 
-app.config['MAIL_SERVER'] = '0.0.0.0'
-app.config['MAIL_PORT'] = 1025
-app.config['MAIL_USERNAME'] = ''
-app.config['MAIL_PASSWORD'] = ''
-app.config['MAIL_USE_TLS'] = False
-app.config['MAIL_USE_SSL'] = False
-mail = Mail(app)
 
 
 @app.route("/")
