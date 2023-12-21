@@ -12,7 +12,7 @@ class MailController(Resource):
         data = request.get_json()
         mail = Mail(app)
 
-        sender = app.config['MAIL_EMAIL']
+        sender = app.config['MAIL_FROM_EMAIL']
         name = data['name']
         recipient = data['email']
 
