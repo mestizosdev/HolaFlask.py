@@ -8,6 +8,11 @@ def encrypt(password):
     return bcrypt.hashpw(bytes, salt)
 
 
+def compare(password, encrypted_password):
+    bytes = password.encode()
+    return bcrypt.checkpw(bytes, encrypted_password)
+
+
 def validate(password):
     special_symbols = ['$', '@', '#', '%']
 

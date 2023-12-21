@@ -21,6 +21,10 @@ class UserBody(BaseModel):
         return value
 
 
+class UserBodyLogin(UserBody):
+    email: Optional[EmailStr] = None
+
+
 class UserBodyUpdate(UserBody):
     password: Optional[str] = None
     status: bool
