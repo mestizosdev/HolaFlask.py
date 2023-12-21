@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 from .controller.user_controller import User, Users, UserById
-from .controller.login_controller import Register
+from .controller.login_controller import Signup
 
 
 def define_routes(api):
@@ -9,4 +9,4 @@ def define_routes(api):
     api.add_resource(Users, '/users')
     api.add_resource(UserById, '/user/<int:id>')
 
-    api.add_resource(Register, '/user/register')
+    api.add_resource(Signup, '/user/signup')

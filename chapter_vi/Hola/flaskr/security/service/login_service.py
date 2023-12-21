@@ -7,7 +7,7 @@ from ..model.user import User
 
 class LoginService:
     @staticmethod
-    def register(data):
+    def signup(data):
         try:
             user = User(
                 username=data['username'],
@@ -25,5 +25,5 @@ class LoginService:
 
             return user_dict
         except Exception as e:
-            app.logger.error(f'Error to register user: {e}')
-            raise ValueError('Error to register user')
+            app.logger.error(f'Error to signup user: {e}')
+            raise ValueError('Error to signup user')
