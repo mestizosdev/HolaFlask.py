@@ -4,7 +4,7 @@ from flask import request, jsonify, make_response, current_app as app
 from flask_pydantic import validate
 from flask_mail import Mail, Message
 from flaskr.utils.token import generate_confirmation_token
-from flaskr.utils.password import compare
+from flaskr.utils.password import compare, encrypt
 from ..service.login_service import LoginService
 from ..service.user_service import UserService
 from ..schema.user_schema import UserBody, UserBodyLogin
@@ -65,9 +65,10 @@ class Signin(Resource):
     def post(self):
         try:
             data = request.get_json()
-            user = UserService.find_by_username(data['username'])
-            if compare(data['password'], user.password):
-                return make_response(jsonify(user.to_dict()), 200)
+            password = UserService.find_password_by_username(data['username'])
+            print(encrypt(data['password']))
+            if compare(data['password'], password):
+                return make_response(jsonify({}), 200)
 
             return {'message': 'Invalid credentials'}, 404
         except ValueError as e:

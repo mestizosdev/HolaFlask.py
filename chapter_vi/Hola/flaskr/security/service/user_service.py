@@ -145,3 +145,9 @@ class UserService:
             return user_dict
 
         return None
+
+    @staticmethod
+    def find_password_by_username(username) -> str:
+        user = User.query.filter_by(username=username).first()
+
+        return user.password

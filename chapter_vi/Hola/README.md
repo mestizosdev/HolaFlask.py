@@ -2,6 +2,7 @@
 
 ## Content
 - MailHog
+- Login
 
 ## Resources
 - https://github.com/mailhog/MailHog

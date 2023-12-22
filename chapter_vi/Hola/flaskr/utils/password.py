@@ -3,14 +3,16 @@ import bcrypt
 
 
 def encrypt(password):
-    bytes = password.encode()
+    bytes = password.encode('utf-8')
     salt = bcrypt.gensalt()
-    return bcrypt.hashpw(bytes, salt)
+    hashed_password = bcrypt.hashpw(bytes, salt)
+    return hashed_password.decode('utf-8')
 
 
-def compare(password, encrypted_password):
-    bytes = password.encode()
-    return bcrypt.checkpw(bytes, encrypted_password)
+def compare(password, stored_password):
+    return bcrypt.checkpw(
+        password.encode('utf-8'), stored_password.encode('utf-8')
+    )
 
 
 def validate(password):
