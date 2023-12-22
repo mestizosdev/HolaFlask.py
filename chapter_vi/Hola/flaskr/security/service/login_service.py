@@ -33,27 +33,27 @@ class LoginService:
     def confirm_email(token: str) -> [bool, dict]:
         try:
             email = confirm_token(token)
+            if email:
+                user = User.query.filter_by(email=email).first()
+
+                if user:
+                    if user.status:
+                        return True, {
+                            'message': 'Account already confirmed. Please login'
+                        }
+                    else:
+                        user.status = True
+                        user.update_at = db.func.now()
+                        db.session.commit()
+                        return True, {
+                            'message': 'You have confirmed your account. Thanks!'
+                        }
+
+            return False, {
+                'message': 'The confirmation link is invalid or has expired'
+            }
         except Exception as e:
             app.logger.error(f'Error to confirm_email: {e}')
             return False, {
                 'message': 'The confirmation link is invalid or has expired.'
             }
-
-        user = User.query.filter_by(email=email).first()
-
-        if user:
-            if user.status:
-                return True, {
-                    'message': 'Account already confirmed. Please login'
-                }
-            else:
-                user.status = True
-                user.update_at = db.func.now()
-                db.session.commit()
-                return True, {
-                    'message': 'You have confirmed your account. Thanks!'
-                }
-
-        return False, {
-            'message': 'The confirmation link is invalid or has expired'
-        }

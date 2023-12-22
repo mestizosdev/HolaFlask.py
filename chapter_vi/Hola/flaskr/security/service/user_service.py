@@ -150,4 +150,7 @@ class UserService:
     def find_password_by_username(username) -> str:
         user = User.query.filter_by(username=username).first()
 
-        return user.password
+        if user:
+            return user.password
+
+        return None
