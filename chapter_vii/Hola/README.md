@@ -3,9 +3,15 @@
 ## Content
 - Test
 
-## Resources
-- https://github.com/mailhog/MailHog
-- https://github.com/ArchGPT/insomnium
+## Test
+Run
+```
+pytest
+```
+Run with print
+```
+pytest -s
+```
 
 ## Install MailHog on docker
 Go to MailHog folder and run
