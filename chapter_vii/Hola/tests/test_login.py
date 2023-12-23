@@ -1,12 +1,11 @@
-from flaskr import app
 from colorama import Fore, init
 
 init()
 
 
-def test_signup():
+def test_signup(app_with_db):
     url = '/hola/v1/user/signup'
-    response = app.test_client().post(
+    response = app_with_db.post(
         url,
         json={
             'username': 'test',
