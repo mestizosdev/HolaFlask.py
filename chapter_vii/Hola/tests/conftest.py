@@ -1,9 +1,20 @@
 import pytest
 from flaskr import app, db
+from colorama import Fore, init
+
+init()
 
 
 @pytest.fixture(scope='session')
 def flask_app():
+    print(Fore.RED + f'URI {app.config["SQLALCHEMY_DATABASE_URI"]}')
+    app.config.update(
+        {
+            'SQLALCHEMY_DATABASE_URI': 'postgresql+psycopg://hola:h@localhost/test',
+        }
+    )
+    print(Fore.CYAN + f'URI {app.config["SQLALCHEMY_DATABASE_URI"]}')
+
     client = app.test_client()
     ctx = app.test_request_context()
     ctx.push()
