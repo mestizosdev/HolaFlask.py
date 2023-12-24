@@ -10,23 +10,25 @@ from flaskr.seeder import Seeder
 from flaskr.config.models import *  # noqa
 
 
-app = Flask(__name__)
-CORS(app)
-api = Api(app)
-app.config.from_pyfile('config/config.cfg')
-db.init_app(app)
+def create_app(env='development'):
+    app = Flask(__name__)
+    CORS(app)
+    api = Api(app)
+    app.config.from_pyfile('config/config.cfg')
+    db.init_app(app)
 
-migrate = Migrate(app, db)
+    migrate = Migrate(app, db)
 
-load_routes(api)
-define_logger()
+    load_routes(api)
+    app.register_blueprint(define_logger)
 
+    # @app.cli.command('seed')
+    # def seed():
+    #     Seeder.seed()
+    #
+    # @app.cli.command('unseed')
+    # def undo_seed():
+    #     Seeder.unseed()
 
-@app.cli.command('seed')
-def seed():
-    Seeder.seed()
+    return app
 
-
-@app.cli.command('unseed')
-def undo_seed():
-    Seeder.unseed()

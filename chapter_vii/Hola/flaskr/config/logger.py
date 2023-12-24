@@ -2,6 +2,8 @@
 import os
 import sys
 import logging
+from flask import Blueprint
+# from flask import current_app as app
 
 
 def define_logger():
@@ -10,6 +12,8 @@ def define_logger():
         os.makedirs('logs')
     # Logger
     filename = os.path.join(os.path.realpath('.'), 'logs', 'server.log')
+
+    
     logging.basicConfig(
         level=logging.DEBUG,
         format='[%(levelname)s] %(asctime)s %(message)s',
@@ -18,6 +22,5 @@ def define_logger():
             logging.StreamHandler(sys.stdout),
         ],
     )
-    from flaskr import app
 
-    app.logger.info('Start Flask Server')
+    # app.logger.info('Start Flask Server')
