@@ -5,6 +5,7 @@ from flask_cors import CORS
 from flask_migrate import Migrate
 from flaskr.config.database import db
 from flaskr.config.routes import load_routes
+from flaskr.config.logger import define_logger
 from flaskr.seeder import Seeder
 from flaskr.config.models import *  # noqa
 
@@ -13,6 +14,7 @@ def create_app(env='development'):
     app = Flask(__name__)
     CORS(app)
     api = Api(app)
+
     if env == 'development':
         app.config.from_pyfile('config/config.cfg')
     elif env == 'test':
@@ -23,6 +25,7 @@ def create_app(env='development'):
     Migrate(app, db)
 
     load_routes(api)
+    define_logger(app)
 
     @app.cli.command('seed')
     def seed():

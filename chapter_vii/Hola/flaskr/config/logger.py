@@ -2,10 +2,9 @@
 import os
 import sys
 import logging
-# from flask import current_app as app
 
 
-def define_logger():
+def define_logger(app):
     # Create logs folder if not exist
     if not os.path.exists('logs'):
         os.makedirs('logs')
@@ -21,4 +20,4 @@ def define_logger():
         ],
     )
 
-    # app.logger.info('Start Flask Server')
+    app.logger.info('Start Flask Server')
