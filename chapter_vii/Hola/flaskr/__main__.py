@@ -7,4 +7,3 @@ if __name__ == '__main__':
     print('Main Flask Server')
     define_logger()
     app.run()
-
