@@ -1,5 +1,5 @@
 import pytest
-from flaskr import create_app, db
+from flaskr import create_app, db, Seeder
 
 
 @pytest.fixture(scope='session')
@@ -17,6 +17,7 @@ def flask_app():
 @pytest.fixture(scope='session')
 def app_with_db(flask_app):
     db.create_all()
+    Seeder.seed()
 
     yield flask_app
 

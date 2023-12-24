@@ -8,6 +8,6 @@ def test_get_version(app_with_db):
     response = app_with_db.get(url)
     data = response.get_json()
     print(Fore.GREEN + f'URL {url}')
-    print(Fore.YELLOW + f'Json GET ALL result {data}')
+    print(Fore.YELLOW + f'JSON GET ALL result {data}')
     assert response.status_code == 200
     assert data['application']['name'] == 'HolaFlask.py'

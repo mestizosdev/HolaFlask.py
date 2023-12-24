@@ -15,5 +15,5 @@ def test_signup(app_with_db):
     )
     data = response.get_json()
     print(Fore.GREEN + f'URL {url}')
-    print(Fore.YELLOW + f'Json POST result {data}')
+    print(Fore.YELLOW + f'JSON POST result {data}')
     assert response.status_code == 201
