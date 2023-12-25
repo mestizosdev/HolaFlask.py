@@ -3,6 +3,7 @@ from flask_restful import Resource
 from flask import request, jsonify, make_response
 from flask_pydantic import validate
 from flask_jwt_extended import jwt_required, get_jwt
+from flaskr.utils.access_level import roles_required
 from ..service.user_service import UserService
 from ..schema.user_schema import UserBody, UserBodyUpdate
 
@@ -20,7 +21,7 @@ class Users(Resource):
 
 
 class UserById(Resource):
-    @jwt_required()
+    @roles_required(['Manager', 'Administrator'])
     def get(self, id):
         user = UserService.find_by_id(id)
 
