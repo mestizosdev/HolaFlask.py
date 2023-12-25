@@ -65,10 +65,12 @@ class Signin(Resource):
 
             elif status and len(stored_password) > 0:
                 if compare(data['password'], stored_password):
+                    roles = UserService.find_roles_by_username(data['username'])
                     return jsonify(
                         {
                             'access_token': create_access_token(
-                                identity=data['username']
+                                identity=data['username'],
+                                additional_claims={'roles': roles},
                             ),
                             'refresh_token': create_refresh_token(
                                 identity=data['username']

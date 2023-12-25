@@ -1,7 +1,8 @@
 # -*- coding: utf-8 -*-
 from flaskr.config.database import db
 from sqlalchemy import UniqueConstraint
-from flaskr.config.models import User, Role
+from ..model.user import User
+from ..model.role import Role
 
 
 class UserRole(db.Model):

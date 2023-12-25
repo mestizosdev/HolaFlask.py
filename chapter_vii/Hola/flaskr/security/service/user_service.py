@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
 from flask import current_app as app
 from typing import Tuple
+from sqlalchemy import select
 from flaskr.config.database import db
 from flaskr.utils.password import encrypt
 from ..model.user import User
@@ -154,3 +155,16 @@ class UserService:
             return user.status, user.password
 
         return False, ''
+
+    @staticmethod
+    def find_roles_by_username(username) -> list:
+        result = db.session.scalars(
+            select(User).join(User.user_roles).where(User.username == username)
+        ).all()
+
+        roles = []
+        for row in result:
+            for role in row.user_roles:
+                roles.append(role.role_name)
+
+        return roles

@@ -10,14 +10,14 @@ class UserSeeder:
         admini = User(
             username='admini',
             email='admini@localhost',
-            password=encrypt('a'),
+            password=encrypt('123456789Aa@'),
         )
         admini.status = True
 
         manager = User(
             username='manager',
             email='manager@localhost',
-            password=encrypt('m'),
+            password=encrypt('123456789Aa@'),
         )
         manager.status = True
 

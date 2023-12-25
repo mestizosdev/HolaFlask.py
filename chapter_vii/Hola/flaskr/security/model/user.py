@@ -15,6 +15,8 @@ class User(db.Model):
     )
     update_at = db.Column(db.DateTime)
 
+    user_roles = db.relationship('UserRole', backref='User')
+
     def __init__(self, username: str, email: str, password: str):
         self.username = username
         self.email = email

@@ -2,7 +2,7 @@
 from flask_restful import Resource
 from flask import request, jsonify, make_response
 from flask_pydantic import validate
-from flask_jwt_extended import jwt_required
+from flask_jwt_extended import jwt_required, get_jwt
 from ..service.user_service import UserService
 from ..schema.user_schema import UserBody, UserBodyUpdate
 
@@ -10,7 +10,13 @@ from ..schema.user_schema import UserBody, UserBodyUpdate
 class Users(Resource):
     @jwt_required()
     def get(self):
-        return jsonify(UserService.find_all())
+        jwt = get_jwt()
+        roles = jwt.get('roles')
+
+        if 'Manager' in roles or 'Administrator' in roles:
+            return jsonify(UserService.find_all())
+
+        return {'message': 'Access forbidden'}, 403
 
 
 class UserById(Resource):
