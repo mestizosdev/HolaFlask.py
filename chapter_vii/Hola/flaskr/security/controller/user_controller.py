@@ -30,7 +30,7 @@ class UserById(Resource):
 
         return {'message': 'User not found'}, 404
 
-    @jwt_required()
+    @roles_required(['Administrator'])
     @validate(body=UserBodyUpdate)
     def put(self, id):
         """Not update password"""
@@ -45,7 +45,7 @@ class UserById(Resource):
         except ValueError as e:
             return {'message': str(e)}, 500
 
-    @jwt_required()
+    @roles_required(['Administrator'])
     def delete(self, id):
         try:
             status = UserService.delete(id)
@@ -59,7 +59,7 @@ class UserById(Resource):
 
 
 class User(Resource):
-    @jwt_required()
+    @roles_required(['Administrator'])
     @validate(body=UserBody)
     def post(self):
         try:
