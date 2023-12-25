@@ -147,10 +147,10 @@ class UserService:
         return None
 
     @staticmethod
-    def find_password_by_username(username) -> str:
+    def find_status_password_by_username(username) -> Tuple[bool, str]:
         user = User.query.filter_by(username=username).first()
 
         if user:
-            return user.password
+            return user.status, user.password
 
-        return None
+        return False, ''
