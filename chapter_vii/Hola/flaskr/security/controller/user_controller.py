@@ -2,16 +2,19 @@
 from flask_restful import Resource
 from flask import request, jsonify, make_response
 from flask_pydantic import validate
+from flask_jwt_extended import jwt_required
 from ..service.user_service import UserService
 from ..schema.user_schema import UserBody, UserBodyUpdate
 
 
 class Users(Resource):
+    @jwt_required()
     def get(self):
         return jsonify(UserService.find_all())
 
 
 class UserById(Resource):
+    @jwt_required()
     def get(self, id):
         user = UserService.find_by_id(id)
 
@@ -20,6 +23,7 @@ class UserById(Resource):
 
         return {'message': 'User not found'}, 404
 
+    @jwt_required()
     @validate(body=UserBodyUpdate)
     def put(self, id):
         """Not update password"""
@@ -34,6 +38,7 @@ class UserById(Resource):
         except ValueError as e:
             return {'message': str(e)}, 500
 
+    @jwt_required()
     def delete(self, id):
         try:
             status = UserService.delete(id)
@@ -47,6 +52,7 @@ class UserById(Resource):
 
 
 class User(Resource):
+    @jwt_required()
     @validate(body=UserBody)
     def post(self):
         try:

@@ -2,6 +2,7 @@
 from flask_restful import Resource
 from flask import request, jsonify, make_response
 from flask_pydantic import validate
+from flask_jwt_extended import create_access_token, create_refresh_token
 from flaskr.utils.token import generate_confirmation_token
 from flaskr.utils.password import compare
 from ..service.login_service import LoginService
@@ -48,6 +49,7 @@ class Signin(Resource):
     def post(self):
         try:
             data = request.get_json()
+
             (
                 status,
                 stored_password,
@@ -63,7 +65,16 @@ class Signin(Resource):
 
             elif status and len(stored_password) > 0:
                 if compare(data['password'], stored_password):
-                    return make_response(jsonify({}), 200)
+                    return jsonify(
+                        {
+                            'access_token': create_access_token(
+                                identity=data['username']
+                            ),
+                            'refresh_token': create_refresh_token(
+                                identity=data['username']
+                            ),
+                        }
+                    )
 
             return {'message': 'Invalid credentials'}, 404
         except ValueError as e:
