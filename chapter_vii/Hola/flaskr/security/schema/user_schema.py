@@ -1,11 +1,11 @@
-from pydantic import BaseModel, EmailStr, field_validator
+from pydantic import BaseModel, EmailStr, field_validator, constr
 from pydantic_core import PydanticCustomError
 from typing import Optional
 from flaskr.utils.password import validate
 
 
 class UserBody(BaseModel):
-    username: str
+    username: constr(min_length=3, max_length=18, pattern=r'^[A-Za-z0-9_-]+$')
     email: EmailStr
     password: str
 
