@@ -3,16 +3,11 @@
 ## Content
 - Test
 
-## Test
-Run
+## [Database](./DATABASE.md)
+Create database test for testing
 ```
-pytest
+create database test;
 ```
-Run with print
-```
-pytest -s
-```
-
 ## Install MailHog on docker
 Go to MailHog folder and run
 ```
@@ -27,6 +22,17 @@ docker logs mailhog
 ### Go to http://localhost:8025/ to see the mailhog interface
 
 ## Install dependencies
+```
+virtualenv -p python3.12 venv
+```
+```
+source venv/bin/activate
+```
+```
+pip install -U pip
+pip install --upgrade wheel
+pip install --upgrade setuptools
+```
 ```
 pip install -r requirements.txt
 ```
@@ -52,6 +58,15 @@ flask --app flaskr seed
 ### Undo seed
 ```
 flask --app flaskr unseed
+```
+## Test
+Run
+```
+pytest
+```
+Run with print
+```
+pytest -s
 ```
 
 ## Run
