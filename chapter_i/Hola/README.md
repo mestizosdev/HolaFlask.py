@@ -26,6 +26,10 @@ or
 ```
 virtualenv -p python3.12 venv
 ```
+or
+```
+python3.12 -m venv venv
+```
 ## Activate python virtual environment
 ```
 source venv/bin/activate
